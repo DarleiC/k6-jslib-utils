@@ -16,6 +16,7 @@ import {
     randomIntBetween,
     randomString,
     randomItem,
+    randomItems,
     uuidv4,
     findBetween,
 } from 'https://jslib.k6.io/k6-utils/1.6.0/index.js'
@@ -23,6 +24,7 @@ import {
 export default function () {
     let res = http.post(`https://test-api.k6.io/user/register/`, {
         first_name: randomItem(['Joe', 'Jane']), // random name
+        interests: randomItems(['tech', 'music', 'gaming', 'sports'], 2), // 2 unique random items
         last_name: `Jon${randomString(1, 'aeiou')}s`, //random character from given list
         username: `user_${randomString(10)}@example.com`, // random email address,
         password: uuidv4(), // random password in form of uuid
